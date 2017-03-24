@@ -11,7 +11,9 @@ import { map } from 'underscore';
 
 class App extends Component {
   render() {
-    console.log(this.props.dice)
+    /*const mapped = map(this.props.dice.dice, function(dice, ind) {
+      return <Dice
+    })*/
     return (
       <div className="App">
         <Dice number={this.props.dice.dice[1].numberOnDice}/>
