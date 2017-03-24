@@ -6,7 +6,7 @@ import RollButton from './RollButton';
 import './App.css';
 import './dice.css';
 import 'bulma/css/bulma.css';
-
+import { connect } from 'react-redux';
 
 class App extends Component {
   render() {
@@ -25,11 +25,11 @@ class App extends Component {
   }
 }
 
-export default App;
-
-
-function createRandomNumber(max, min) {
-   return Math.floor(Math.random() * (max - min)) + min;
+function mapStateToProps (state) {
+  return {
+    dice: state
+  }
 }
 
+export default connect(mapStateToProps)(App);
   

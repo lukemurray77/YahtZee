@@ -1,11 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { RollDice } from './reduxStuff/actions';
 
 const RollButton = React.createClass({
     render() {
         return (
-            <a className='button is-danger'> ROLLLLL </a>
+            <div>
+            <a className='button is-danger' onClick={this.handleClick}> ROLLLLL </a>
+            </div>
         )
+    },
+    handleClick: function () {
+        this.props.rollDice();
     }
 })
 
-export default RollButton;
+function mapDispatchToProps (dispatch) {
+    return {
+        rollDice: () => {
+            dispatch(RollDice())
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(RollButton);

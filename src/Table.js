@@ -3,7 +3,7 @@ import React from 'react';
 const Table = React.createClass({
     render() {
         return (
-            <table class="table">
+            <table className="table">
   <thead>
     <tr>
       <th><abbr title="Position">Pos</abbr></th>
