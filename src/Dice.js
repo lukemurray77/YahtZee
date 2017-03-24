@@ -4,7 +4,7 @@ const Dice = React.createClass({
     render() {
         return (
             <div className='dice'>
-                {this.props.diceNumber}
+                {this.props.number}
 
             <div className="tile is-parent">
                 <article className="tile is-child notification is-info">
