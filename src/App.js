@@ -11,13 +11,13 @@ import { map } from 'underscore';
 
 class App extends Component {
   render() {
-    console.log("EEKJBR", this.props.dice)
-    var newDice = map(this.props.dice, function (dice, index) {
-      return <Dice diceNumber={dice.numberOnDice} key={index}/>
-    })
     return (
       <div className="App">
-        {newDice}
+        <Dice />
+        <Dice />
+        <Dice />
+        <Dice />
+        <Dice />
         <RollButton />
         <Table />
       </div>
@@ -28,7 +28,7 @@ class App extends Component {
 
 function mapStateToProps (state) {
   return {
-    dice: state.dice
+    dice: state
   }
 }
 
