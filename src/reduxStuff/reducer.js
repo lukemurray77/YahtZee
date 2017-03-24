@@ -32,11 +32,8 @@ function reducer (prevState = initialState, action) {
         case types.ROLL_DICE: {
             const newState = Object.assign({}, prevState);
             const newDice = Object.assign({}, prevState.dice);
-            console.log(newState.newDice);
             for (var key in newDice) {
-                console.log("THIS ONE", newDice[key]);
                 if (!key.held) {
-                    console.log(newDice[key].numberOnDice);
                     newDice[key].numberOnDice = diceRoll(1, 7);
                 }
             }
