@@ -10,31 +10,28 @@ import { map } from 'underscore';
 
 class App extends Component {
   render() {
-    /*const mapped = map(this.props.dice.dice, function(dice, ind) {
-      return <Dice 
-               number={dice.numberOnDice}   
-               />
-    })*/
+    const mapped = map(this.props.dice.dice, function (dice, ind) {
+      return <Dice
+        key={ind}
+        number={dice.numberOnDice}
+      />
+    });
     return (
       <div className="App">
-        <Dice number={this.props.dice.dice[1].numberOnDice}/>
-        <Dice number={this.props.dice.dice[2].numberOnDice}/>
-        <Dice number={this.props.dice.dice[3].numberOnDice}/>
-        <Dice number={this.props.dice.dice[4].numberOnDice}/>
-        <Dice number={this.props.dice.dice[5].numberOnDice}/>
+        {mapped}
         <RollButton />
         <Table />
       </div>
-      
+
     );
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     dice: state
   }
 }
 
 export default connect(mapStateToProps)(App);
-  
+
