@@ -13,6 +13,9 @@ body {
 }
 
 .dice img {
+  background-color: purple;
+  padding: 2vh;
+  border-radius: 20px;   
 }
 
 .notification {
