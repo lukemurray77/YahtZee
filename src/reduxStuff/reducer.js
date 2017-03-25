@@ -39,6 +39,13 @@ function reducer (prevState = initialState, action) {
             }
             return newState;
         }
+        case types.HOLD_DICE: {
+            const newState = Object.assign({}, prevState);
+            const newDice = Object.assign({}, prevState.dice);
+            console.log(newDice[action.whichDice])
+            newDice[action.whichDice].held = newDice[action.whichDice].held ? false : true;
+            return newState;
+        }
         default: {
             return prevState;
         }

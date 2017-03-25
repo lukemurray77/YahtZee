@@ -23,7 +23,8 @@ body {
 }
 
 .table {
-  background: transparent
+  background: transparent;
+  color: white;
 }
 
 .App {

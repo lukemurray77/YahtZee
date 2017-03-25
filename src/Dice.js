@@ -5,6 +5,8 @@ const dice6 = require('./images/dice-6.png');
 const dice2 = require('./images/two.png');
 const dice1 = require('./images/one.png');
 const dice3 = require('./images/three.png');
+import {HoldDice} from './reduxStuff/actions';
+import {connect} from 'react-redux';
 
 const imageToRender = {
     1: dice1,
@@ -18,7 +20,7 @@ const imageToRender = {
 const Dice = React.createClass({
     render () {
         return (
-            <div className='dice'>
+            <div className='dice' onClick={this.handleClick}>
                 <div className="tile is-parent">
                     <article className="tile is-child notification is-info">
                         <figure className="image is-4by3">
@@ -30,8 +32,20 @@ const Dice = React.createClass({
         );
     
 
+    },
+    handleClick() {
+        console.log(this.key)
+        this.props.holdDice(this.key);
     }
 });
 
 
-export default Dice;
+function mapDispatchToProps (dispatch) {
+    return {
+        holdDice : (key) => {
+            dispatch(HoldDice(key))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Dice);
