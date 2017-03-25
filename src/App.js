@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Dice from './Dice';
 import Table from './Table';
 import RollButton from './RollButton';
-import './App.css';
-import './dice.css';
+import './css/App.css';
+import './css/dice.css';
 import 'bulma/css/bulma.css';
 import { connect } from 'react-redux';
 import { map } from 'underscore';
@@ -12,7 +11,9 @@ import { map } from 'underscore';
 class App extends Component {
   render() {
     /*const mapped = map(this.props.dice.dice, function(dice, ind) {
-      return <Dice
+      return <Dice 
+               number={dice.numberOnDice}   
+               />
     })*/
     return (
       <div className="App">

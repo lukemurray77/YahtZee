@@ -1,13 +1,13 @@
 import React from 'react';
-const dice4 = require('./dice-4.png')
-const dice5 = require('./dice-5.png')
-const dice6 = require('./dice-6.png')
-const dice2 = require('./two.png');
-const dice1= require('./one.png');
-const dice3 = require('./three.png');
+const dice4 = require('./images/dice-4.png');
+const dice5 = require('./images/dice-5.png');
+const dice6 = require('./images/dice-6.png');
+const dice2 = require('./images/two.png');
+const dice1 = require('./images/one.png');
+const dice3 = require('./images/three.png');
 
 const Dice = React.createClass({
-    render() {
+    render () {
 
         switch (this.props.number) {
             case 1: {
@@ -23,7 +23,7 @@ const Dice = React.createClass({
                             </article>
                         </div>
                     </div>
-                )
+                );
             }
             case 2: {
                 return (
@@ -38,7 +38,7 @@ const Dice = React.createClass({
                             </article>
                         </div>
                     </div>
-                )
+                );
             }
             case 3: {
                 return (
@@ -53,7 +53,7 @@ const Dice = React.createClass({
                             </article>
                         </div>
                     </div>
-                )
+                );
             }
             case 4: {
                 return (
@@ -68,7 +68,7 @@ const Dice = React.createClass({
                             </article>
                         </div>
                     </div>
-                )
+                );
             }
             case 5: {
                 return (
@@ -83,7 +83,7 @@ const Dice = React.createClass({
                             </article>
                         </div>
                     </div>
-                )
+                );
             }
             case 6: {
                 return (
@@ -98,13 +98,12 @@ const Dice = React.createClass({
                             </article>
                         </div>
                     </div>
-                )
+                );
             }
         }
 
     }
-})
-
+});
 
 
 export default Dice;

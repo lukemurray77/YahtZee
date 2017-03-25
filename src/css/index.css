@@ -29,5 +29,5 @@ body {
 .App {
     height: 100vh;
     background-size: cover;
-    background-image: url('background.jpg');
+    background-image: url('../images/background.jpg');
 }
