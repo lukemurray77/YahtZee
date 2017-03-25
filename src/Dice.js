@@ -2,7 +2,9 @@ import React from 'react';
 const dice4 = require('./dice-4.png')
 const dice5 = require('./dice-5.png')
 const dice6 = require('./dice-6.png')
-
+const dice2 = require('./two.png');
+const dice1= require('./one.png');
+const dice3 = require('./three.png');
 
 const Dice = React.createClass({
     render() {
@@ -16,7 +18,7 @@ const Dice = React.createClass({
                         <div className="tile is-parent">
                             <article className="tile is-child notification is-info">
                                 <figure className="image is-4by3">
-                                    <img src="http://www.pd4pic.com/images/dice-die-game-red-one-1.png" />
+                                    <img src={dice1} />
                                 </figure>
                             </article>
                         </div>
@@ -31,7 +33,7 @@ const Dice = React.createClass({
                         <div className="tile is-parent">
                             <article className="tile is-child notification is-info">
                                 <figure className="image is-4by3">
-                                    <img src="http://www.pd4pic.com/images/dice-die-game-red-cube-two-2.png" />
+                                    <img src={dice2} />
                                 </figure>
                             </article>
                         </div>
@@ -46,7 +48,7 @@ const Dice = React.createClass({
                         <div className="tile is-parent">
                             <article className="tile is-child notification is-info">
                                 <figure className="image is-4by3">
-                                    <img src="http://www.pd4pic.com/images/dice-die-game-red-cube-3-three.png" />
+                                    <img src={dice3} />
                                 </figure>
                             </article>
                         </div>

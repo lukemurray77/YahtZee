@@ -3,3 +3,28 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.notification.is-info {
+  background-color: transparent;
+}
+
+.dice {
+  margin: 0;
+}
+
+.dice img {
+}
+
+.notification {
+  padding: 0
+}
+
+.table {
+  background: transparent
+}
+
+.App {
+    height: 100vh;
+    background-size: cover;
+    background-image: url('background.jpg');
+}
