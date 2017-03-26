@@ -69,7 +69,7 @@ function reducer(prevState = initialState, action) {
             const newDice = Object.assign({}, prevState.dice);
             const newDiceScore = [];
             for (var key in newDice) {
-                if (!newDice[key].held) {
+                if (!newDice[key].held && newState.rollNumber < 3) {
                     newDice[key].numberOnDice = diceRoll(1, 7);
                 }
                 newDiceScore.push(newDice[key].numberOnDice);
@@ -87,9 +87,7 @@ function reducer(prevState = initialState, action) {
         case types.SCORE_NUMBERS: {
             const newState = Object.assign({}, prevState);
             const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
-            console.log(newPlayerScore);
             newPlayerScore[action.number] = calculateScore(newState.currentDiceScore, action.number);
-            console.log(newPlayerScore[action.number]);
             newState[newState.currentPlayer] = newPlayerScore;
             newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
             newState.rollNumber = 0;
