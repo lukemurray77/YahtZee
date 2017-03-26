@@ -12,3 +12,10 @@ export function HoldDice(key) {
         whichDice: key
     }
 }
+
+export function ScoreNumbers(number) {
+    return {
+        type: types.SCORE_NUMBERS,
+        number: number
+    }
+}

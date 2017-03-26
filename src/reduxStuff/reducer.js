@@ -1,5 +1,5 @@
 import * as types from './types';
-import diceRoll from './helper';
+import { diceRoll, calculateScore } from './helper';
 
 const initialState = {
     dice: {
@@ -58,26 +58,46 @@ const initialState = {
         'Chance': null,
     },
     currentPlayer: 'player1',
-    currentDiceScore: []
-
+    currentDiceScore: [],
+    rollNumber: 0
 };
 
-function reducer (prevState = initialState, action) {
+function reducer(prevState = initialState, action) {
     switch (action.type) {
         case types.ROLL_DICE: {
             const newState = Object.assign({}, prevState);
             const newDice = Object.assign({}, prevState.dice);
+            const newDiceScore = [];
             for (var key in newDice) {
                 if (!newDice[key].held) {
                     newDice[key].numberOnDice = diceRoll(1, 7);
                 }
+                newDiceScore.push(newDice[key].numberOnDice);
             }
+            newState.rollNumber++;
+            newState.currentDiceScore = newDiceScore;
             return newState;
         }
         case types.HOLD_DICE: {
             const newState = Object.assign({}, prevState);
             const newDice = Object.assign({}, prevState.dice);
             newDice[action.whichDice].held = newDice[action.whichDice].held ? false : true;
+            return newState;
+        }
+        case types.SCORE_NUMBERS: {
+            const newState = Object.assign({}, prevState);
+            const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
+            console.log(newPlayerScore);
+            newPlayerScore[action.number] = calculateScore(newState.currentDiceScore, action.number);
+            console.log(newPlayerScore[action.number]);
+            newState[newState.currentPlayer] = newPlayerScore;
+            newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
+            newState.rollNumber = 0;
+            const newDice = Object.assign({}, newState.dice);
+            for (var key in newDice) {
+                newDice[key].held = false;
+            }
+            newState.dice = newDice;
             return newState;
         }
         default: {
