@@ -24,7 +24,42 @@ const initialState = {
             held: false
         }
 
-    }
+    },
+    player1: {
+        1: null,
+        2: null,
+        3: null,
+        4: null,
+        5: null,
+        6: null,
+        total: null,
+        '3 of a kind': null,
+        '4 of a kind': null,
+        'full house': null,
+        'low straight': null,
+        'high straight': null,
+        'Yahtzee': null,
+        'Chance': null,
+    },
+    player2: {
+        1: null,
+        2: null,
+        3: null,
+        4: null,
+        5: null,
+        6: null,
+        total: null,
+        '3 of a kind': null,
+        '4 of a kind': null,
+        'full house': null,
+        'low straight': null,
+        'high straight': null,
+        'Yahtzee': null,
+        'Chance': null,
+    },
+    currentPlayer: 'player1',
+    currentDiceScore: []
+
 };
 
 function reducer (prevState = initialState, action) {
@@ -33,7 +68,7 @@ function reducer (prevState = initialState, action) {
             const newState = Object.assign({}, prevState);
             const newDice = Object.assign({}, prevState.dice);
             for (var key in newDice) {
-                if (!key.held) {
+                if (!newDice[key].held) {
                     newDice[key].numberOnDice = diceRoll(1, 7);
                 }
             }
@@ -42,7 +77,6 @@ function reducer (prevState = initialState, action) {
         case types.HOLD_DICE: {
             const newState = Object.assign({}, prevState);
             const newDice = Object.assign({}, prevState.dice);
-            console.log(newDice[action.whichDice])
             newDice[action.whichDice].held = newDice[action.whichDice].held ? false : true;
             return newState;
         }

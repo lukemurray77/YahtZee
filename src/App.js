@@ -12,8 +12,9 @@ class App extends Component {
   render() {
     const mapped = map(this.props.dice.dice, function (dice, ind) {
       return <Dice
-        key={ind}
+        whichDice={ind}
         number={dice.numberOnDice}
+        held={dice.held}
       />
     });
     return (
@@ -29,7 +30,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    dice: state
+    dice: state,
   }
 }
 

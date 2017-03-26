@@ -6,11 +6,12 @@ const RollButton = React.createClass({
     render() {
         return (
             <div>
-            <a className='button is-danger' onClick={this.handleClick}> ROLLLLL </a>
+            <a className='button is-danger rollButton'  onClick={this.handleClick}> ROLL </a>
             </div>
         )
     },
     handleClick: function () {
+        
         this.props.rollDice();
     }
 })
