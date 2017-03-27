@@ -49,3 +49,15 @@ export function Chance () {
         type: types.SCORE_CHANCE
     }
 }
+
+export function LowStraight () {
+    return {
+        type: types.SCORE_LOWSTRAIGHT
+    }
+}
+
+export function HighStraight () {
+    return {
+        type: types.SCORE_HIGHSTRAIGHT
+    }
+}

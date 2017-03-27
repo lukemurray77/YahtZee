@@ -1,5 +1,5 @@
 import * as types from './types';
-import { diceRoll, calculateScore, threeOfAKind, fourOfAKind, fullHouse, Yahtzee, chance } from './helper';
+import { diceRoll, calculateScore, threeOfAKind, fourOfAKind, fullHouse, Yahtzee, chance, highStraight, lowStraight } from './helper';
 
 const initialState = {
     dice: {
@@ -40,6 +40,7 @@ const initialState = {
         'high straight': null,
         'Yahtzee': null,
         'Chance': null,
+        overallTotal: null
     },
     player2: {
         1: null,
@@ -56,6 +57,7 @@ const initialState = {
         'high straight': null,
         'Yahtzee': null,
         'Chance': null,
+        overallTotal: null
     },
     currentPlayer: 'player1',
     currentDiceScore: [],
@@ -98,7 +100,7 @@ function reducer(prevState = initialState, action) {
             newState.dice = newDice;
             return newState;
         }
-            case types.SCORE_3OFAKIND: {
+        case types.SCORE_3OFAKIND: {
             const newState = Object.assign({}, prevState);
             const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
             newPlayerScore['3 of a kind'] = threeOfAKind(newState.currentDiceScore);
@@ -112,7 +114,7 @@ function reducer(prevState = initialState, action) {
             newState.dice = newDice;
             return newState;
         }
-                    case types.SCORE_4OFAKIND: {
+        case types.SCORE_4OFAKIND: {
             const newState = Object.assign({}, prevState);
             const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
             newPlayerScore['4 of a kind'] = fourOfAKind(newState.currentDiceScore);
@@ -126,7 +128,7 @@ function reducer(prevState = initialState, action) {
             newState.dice = newDice;
             return newState;
         }
-                    case types.SCORE_FULLHOUSE: {
+        case types.SCORE_FULLHOUSE: {
             const newState = Object.assign({}, prevState);
             const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
             newPlayerScore['full house'] = fullHouse(newState.currentDiceScore);
@@ -140,7 +142,7 @@ function reducer(prevState = initialState, action) {
             newState.dice = newDice;
             return newState;
         }
-                    case types.SCORE_YAHTZEE: {
+        case types.SCORE_YAHTZEE: {
             const newState = Object.assign({}, prevState);
             const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
             newPlayerScore['Yahtzee'] = Yahtzee(newState.currentDiceScore);
@@ -154,10 +156,38 @@ function reducer(prevState = initialState, action) {
             newState.dice = newDice;
             return newState;
         }
-case types.SCORE_CHANCE: {
+        case types.SCORE_CHANCE: {
             const newState = Object.assign({}, prevState);
             const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
             newPlayerScore['Chance'] = chance(newState.currentDiceScore);
+            newState[newState.currentPlayer] = newPlayerScore;
+            newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
+            newState.rollNumber = 0;
+            const newDice = Object.assign({}, newState.dice);
+            for (var key in newDice) {
+                newDice[key].held = false;
+            }
+            newState.dice = newDice;
+            return newState;
+        }
+        case types.SCORE_LOWSTRAIGHT: {
+            const newState = Object.assign({}, prevState);
+            const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
+            newPlayerScore['low straight'] = lowStraight(newState.currentDiceScore);
+            newState[newState.currentPlayer] = newPlayerScore;
+            newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
+            newState.rollNumber = 0;
+            const newDice = Object.assign({}, newState.dice);
+            for (var key in newDice) {
+                newDice[key].held = false;
+            }
+            newState.dice = newDice;
+            return newState;
+        }
+        case types.SCORE_HIGHSTRAIGHT: {
+            const newState = Object.assign({}, prevState);
+            const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
+            newPlayerScore['high straight'] = highStraight(newState.currentDiceScore);
             newState[newState.currentPlayer] = newPlayerScore;
             newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
             newState.rollNumber = 0;

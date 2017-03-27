@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {ScoreNumbers, ThreeOfAKind, FourOfAKind, FullHouse, Yahtzee, Chance} from './reduxStuff/actions';
+import {ScoreNumbers, ThreeOfAKind, FourOfAKind, FullHouse, Yahtzee, Chance, LowStraight, HighStraight} from './reduxStuff/actions';
 
 const Table = React.createClass({
   render() {
@@ -70,15 +70,14 @@ const Table = React.createClass({
             <td><b>{this.props.state.player2['4 of a kind']}</b></td>
           </tr>
           <tr>
-            <th>4 run</th>
-            <td></td>
-            <td></td>
+            <th><a className='button' onClick={this.lowStraight}>Low Straight</a></th>
+            <td><b>{this.props.state.player1['low straight']}</b></td>
+            <td><b>{this.props.state.player2['low straight']}</b></td>
           </tr>
           <tr>
-            <th>5 run</th>
-            <td></td
-            >      <td></td>
-            <td></td>
+            <th><a className='button' onClick={this.highStraight}>High Straight</a></th>
+            <td><b>{this.props.state.player1['high straight']}</b></td>
+            <td><b>{this.props.state.player2['high straight']}</b></td>
           </tr>
           <tr>
             <th><a className='button' onClick={this.fullHouse}>Full House</a></th>
@@ -97,8 +96,8 @@ const Table = React.createClass({
           </tr>
           <tr>
             <th>Total</th>
-            <td></td>
-            <td></td>
+            <td>{this.props.state.player1['total']}</td>
+            <td>{this.props.state.player2['total']}</td>
             <td></td>
           </tr>
         </tbody>
@@ -122,6 +121,12 @@ const Table = React.createClass({
   },
   chance: function () {
     this.props.chance();
+  },
+  lowStraight: function() {
+    this.props.lowStraight();
+  },
+  highStraight: function () {
+    this.props.highStraight();
   }
 })
 
@@ -150,7 +155,14 @@ function mapDispatchToProps(dispatch) {
     },
     chance: () => {
       dispatch(Chance());
+    },
+    lowStraight: () => {
+      dispatch(LowStraight());
+    },
+    highStraight: () => {
+      dispatch(HighStraight());
     }
+
   }
 }
 

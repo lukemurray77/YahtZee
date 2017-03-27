@@ -88,25 +88,33 @@ export function fullHouse(arr) {
     else return 0;
 }
 
-// export function lowStraight(arr) {
-//     arr.sort();
-//     if () {
-//         return 30;
-//     }
-//     else return 0;
-// }
+export function lowStraight(arr) {
+    arr.sort();
+    let counter = 0;
+    for (var i = 1; i < arr.length; i++) {
+        if ((arr[i-1])+1 === arr[i]) {
+            counter++;
+        }
+    }
+    if (counter > 2) {
+        return 30;
+    }
+    else return 0;
+}
 
-// export function highStraight(arr) {
-//     arr.sort();
-    
-//     arr.reduce(function (acc, val) {
-        
-//     })
-//     if () {
-//         return 40;
-//     }
-//     else return 0;
-// }
+export function highStraight(arr) {
+    arr.sort();
+    let counter = 0;
+    for (var i = 1; i < arr.length; i++) {
+        if ((arr[i-1])+1 === arr[i]) {
+            counter++;
+        }
+    }
+    if (counter === 4) {
+        return 40;
+    }
+    else return 0;
+}
 
 export function Yahtzee(arr) {
     if (_.every(arr, function (el) {
