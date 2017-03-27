@@ -19,3 +19,27 @@ export function ScoreNumbers(number) {
         number: number
     }
 }
+
+export function ThreeOfAKind() {
+    return {
+        type: types.SCORE_3OFAKIND
+    }
+}
+
+export function FourOfAKind () {
+    return {
+        type: types.SCORE_4OFAKIND
+    }
+}
+
+export function FullHouse () {
+    return {
+        type: types.SCORE_FULLHOUSE
+    }
+}
+
+export function Yahtzee () {
+    return {
+        type: types.SCORE_YAHTZEE
+    }
+}

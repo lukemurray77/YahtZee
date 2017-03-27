@@ -26,7 +26,7 @@ export function threeOfAKind(arr) {
             secondValue = element;
             secondValueCoutner++;
         }
-        if (element === secondValue) {
+        else if (element === secondValue) {
             secondValueCoutner++;
         }
     });
@@ -52,7 +52,7 @@ export function fourOfAKind(arr) {
             secondValue = element;
             secondValueCoutner++;
         }
-        if (element === secondValue) {
+        else if (element === secondValue) {
             secondValueCoutner++;
         }
     });
@@ -78,7 +78,7 @@ export function fullHouse(arr) {
             secondValue = element;
             secondValueCoutner++;
         }
-        if (element === secondValue) {
+        else if (element === secondValue) {
             secondValueCoutner++;
         }
     });
@@ -88,16 +88,27 @@ export function fullHouse(arr) {
     else return 0;
 }
 
-export function lowStraight(arr) {
-    return 30;
-}
+// export function lowStraight(arr) {
+//     arr.sort();
+//     if () {
+//         return 30;
+//     }
+//     else return 0;
+// }
 
-export function highStraight(arr) {
-    return 40;
-}
+// export function highStraight(arr) {
+//     arr.sort();
+    
+//     arr.reduce(function (acc, val) {
+        
+//     })
+//     if () {
+//         return 40;
+//     }
+//     else return 0;
+// }
 
 export function Yahtzee(arr) {
-
     if (_.every(arr, function (el) {
         return (el === arr[0]);
     })) return 50;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {ScoreNumbers} from './reduxStuff/actions';
+import {ScoreNumbers, ThreeOfAKind, FourOfAKind, FullHouse, Yahtzee} from './reduxStuff/actions';
 
 const Table = React.createClass({
   render() {
@@ -60,17 +60,14 @@ const Table = React.createClass({
             <td></td>
           </tr>
           <tr>
-            <th>3 of a kind</th>
-            <td></td>
-            <td></td>
-
-            <td></td>
+            <th><a className='button' onClick={this.handleThree}>3 of a Kind</a></th>
+            <td><b>{this.props.state.player1['3 of a kind']}</b></td>
+            <td><b>{this.props.state.player2['3 of a kind']}</b></td>
           </tr>
           <tr>
-            <th>4 of a kind</th>
-            <td></td>
-            <td></td>
-            <td></td>
+            <th><a className='button' onClick={this.handleFour}>4 of a Kind</a></th>
+            <td><b>{this.props.state.player1['4 of a kind']}</b></td>
+            <td><b>{this.props.state.player2['4 of a kind']}</b></td>
           </tr>
           <tr>
             <th>4 run</th>
@@ -84,16 +81,14 @@ const Table = React.createClass({
             <td></td>
           </tr>
           <tr>
-            <th>FULL HOUSE</th>
-            <td></td>
-            <td></td>
-            <td></td>
+            <th><a className='button' onClick={this.fullHouse}>Full House</a></th>
+            <td><b>{this.props.state.player1['full house']}</b></td>
+            <td><b>{this.props.state.player2['full house']}</b></td>
           </tr>
           <tr>
-            <th>Yatzee</th>
-            <td></td>
-            <td></td>
-            <td></td>
+            <th><a className='button' onClick={this.yahtzee}>Yahtzee</a></th>
+            <td><b>{this.props.state.player1['Yahtzee']}</b></td>
+            <td><b>{this.props.state.player2['Yahtzee']}</b></td>
           </tr>
           <tr>
             <th>Chance</th>
@@ -113,7 +108,19 @@ const Table = React.createClass({
   },
   handleClick: function (num) {
     this.props.scoreNumbers(num);
-  } 
+  },
+  handleThree: function () {
+    this.props.threeOfAKind();
+  },
+  handleFour: function () {
+    this.props.fourOfAKind();
+  },
+  fullHouse: function () {
+    this.props.fullHouse();
+  },
+  yahtzee: function () {
+    this.props.yahtzee();
+  }
 })
 
 function mapStateToProps (state) {
@@ -126,6 +133,18 @@ function mapDispatchToProps(dispatch) {
   return {
     scoreNumbers: (num) => {
       dispatch(ScoreNumbers(num));
+    },
+    threeOfAKind: () => {
+      dispatch(ThreeOfAKind());
+    },
+    fourOfAKind: () => {
+      dispatch(FourOfAKind());
+    },
+    fullHouse: () => {
+      dispatch(FullHouse());
+    },
+    yahtzee: () => {
+      dispatch(Yahtzee());
     }
   }
 }
