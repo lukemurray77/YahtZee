@@ -1,5 +1,5 @@
 import * as types from './types';
-import { diceRoll, calculateScore, threeOfAKind, fourOfAKind, fullHouse, Yahtzee, chance, highStraight, lowStraight } from './helper';
+import { diceRoll, calculateScore, threeOfAKind, fourOfAKind, fullHouse, Yahtzee, chance, highStraight, lowStraight, addTotal } from './helper';
 
 const initialState = {
     dice: {
@@ -90,6 +90,7 @@ function reducer(prevState = initialState, action) {
             const newState = Object.assign({}, prevState);
             const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
             newPlayerScore[action.number] = calculateScore(newState.currentDiceScore, action.number);
+            newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
             newState[newState.currentPlayer] = newPlayerScore;
             newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
             newState.rollNumber = 0;
@@ -104,6 +105,7 @@ function reducer(prevState = initialState, action) {
             const newState = Object.assign({}, prevState);
             const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
             newPlayerScore['3 of a kind'] = threeOfAKind(newState.currentDiceScore);
+            newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
             newState[newState.currentPlayer] = newPlayerScore;
             newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
             newState.rollNumber = 0;
@@ -118,6 +120,7 @@ function reducer(prevState = initialState, action) {
             const newState = Object.assign({}, prevState);
             const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
             newPlayerScore['4 of a kind'] = fourOfAKind(newState.currentDiceScore);
+            newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
             newState[newState.currentPlayer] = newPlayerScore;
             newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
             newState.rollNumber = 0;
@@ -132,6 +135,7 @@ function reducer(prevState = initialState, action) {
             const newState = Object.assign({}, prevState);
             const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
             newPlayerScore['full house'] = fullHouse(newState.currentDiceScore);
+            newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
             newState[newState.currentPlayer] = newPlayerScore;
             newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
             newState.rollNumber = 0;
@@ -146,6 +150,7 @@ function reducer(prevState = initialState, action) {
             const newState = Object.assign({}, prevState);
             const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
             newPlayerScore['Yahtzee'] = Yahtzee(newState.currentDiceScore);
+            newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
             newState[newState.currentPlayer] = newPlayerScore;
             newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
             newState.rollNumber = 0;
@@ -160,6 +165,7 @@ function reducer(prevState = initialState, action) {
             const newState = Object.assign({}, prevState);
             const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
             newPlayerScore['Chance'] = chance(newState.currentDiceScore);
+            newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
             newState[newState.currentPlayer] = newPlayerScore;
             newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
             newState.rollNumber = 0;
@@ -174,6 +180,7 @@ function reducer(prevState = initialState, action) {
             const newState = Object.assign({}, prevState);
             const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
             newPlayerScore['low straight'] = lowStraight(newState.currentDiceScore);
+            newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
             newState[newState.currentPlayer] = newPlayerScore;
             newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
             newState.rollNumber = 0;
@@ -188,6 +195,7 @@ function reducer(prevState = initialState, action) {
             const newState = Object.assign({}, prevState);
             const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
             newPlayerScore['high straight'] = highStraight(newState.currentDiceScore);
+            newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
             newState[newState.currentPlayer] = newPlayerScore;
             newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
             newState.rollNumber = 0;

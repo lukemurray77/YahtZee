@@ -13,14 +13,6 @@ const Table = React.createClass({
             <th><abbr className='played' title="Played">Player 2</abbr></th>
           </tr>
         </thead>
-        <tfoot>
-          <tr>
-            <th><abbr title="Position">Total</abbr></th>
-            <th>Player One Total</th>
-            <th><abbr className='played' title="Played">Player One Total</abbr></th>
-
-          </tr>
-        </tfoot>
         <tbody>
           <tr>
             <th><a className='button' onClick={this.handleClick.bind(null, 1)}>1</a></th>
@@ -55,8 +47,9 @@ const Table = React.createClass({
 
           </tr>
           <tr>
-            <th>TOTAL</th>
-            <td></td>
+            <th>Numbers Total</th>
+            <td>{this.props.state.player1.total}</td>
+            <td>{this.props.state.player2.total}</td>
             <td></td>
           </tr>
           <tr>
@@ -96,8 +89,8 @@ const Table = React.createClass({
           </tr>
           <tr>
             <th>Total</th>
-            <td>{this.props.state.player1['total']}</td>
-            <td>{this.props.state.player2['total']}</td>
+            <td>{this.props.state.player1.overallTotal}</td>
+            <td>{this.props.state.player2.overallTotal}</td>
             <td></td>
           </tr>
         </tbody>
@@ -127,6 +120,9 @@ const Table = React.createClass({
   },
   highStraight: function () {
     this.props.highStraight();
+  },
+  numbersTotal: function () {
+
   }
 })
 

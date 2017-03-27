@@ -30,7 +30,7 @@ export function threeOfAKind(arr) {
             secondValueCoutner++;
         }
     });
-    if (firstValueCounter === 3 || secondValueCoutner === 3) {
+    if (firstValueCounter > 2 || secondValueCoutner > 2) {
         return arr.reduce(function (acc, el) {
             acc += el;
             return acc;
@@ -66,25 +66,14 @@ export function fourOfAKind(arr) {
 }
 
 export function fullHouse(arr) {
-    let firstValue = arr[0];
-    let secondValue;
-    let firstValueCounter = 0;
-    let secondValueCoutner = 0;
-    arr.forEach(function (element) {
-        if (element === arr[0]) {
-            firstValueCounter++;
+    let reducedArr = arr.reduce(function (acc, el) {
+        if (acc.hasOwnProperty('el')) {
+            acc[el]++;
         }
-        if (element !== arr[0]) {
-            secondValue = element;
-            secondValueCoutner++;
-        }
-        else if (element === secondValue) {
-            secondValueCoutner++;
-        }
-    });
-    if (firstValueCounter + secondValueCoutner === 5) {
-        return 25
-    }
+        else (acc[el] = 0);
+        return acc;
+    }, {});
+    if (Object.keys(reducedArr).length === 2) return 25;
     else return 0;
 }
 
@@ -92,7 +81,7 @@ export function lowStraight(arr) {
     arr.sort();
     let counter = 0;
     for (var i = 1; i < arr.length; i++) {
-        if ((arr[i-1])+1 === arr[i]) {
+        if ((arr[i - 1]) + 1 === arr[i]) {
             counter++;
         }
     }
@@ -106,7 +95,7 @@ export function highStraight(arr) {
     arr.sort();
     let counter = 0;
     for (var i = 1; i < arr.length; i++) {
-        if ((arr[i-1])+1 === arr[i]) {
+        if ((arr[i - 1]) + 1 === arr[i]) {
             counter++;
         }
     }
@@ -130,3 +119,13 @@ export function chance(arr) {
     }, 0);
 }
 
+export function addTotal(obj) {
+    let counter = 0;
+    for (var key in obj) {
+        if (obj[key] === null && key !== 'total' && key !== 'overallTotal') return 0;
+        if (key !== 'total' && key !== 'overallTotal') {
+            counter += obj[key];
+        }
+    }
+    return counter
+}
