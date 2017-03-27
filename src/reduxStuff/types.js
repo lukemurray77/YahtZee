@@ -10,3 +10,5 @@ export const SCORE_4OFAKIND = 'SCORE_4OFAKIND'
 export const SCORE_FULLHOUSE = 'SCORE_FULLHOUSE';
 
 export const SCORE_YAHTZEE = 'SCORE_YAHTZEE';
+
+export const SCORE_CHANCE = 'SCORE_CHANCE';

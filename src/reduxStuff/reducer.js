@@ -1,5 +1,5 @@
 import * as types from './types';
-import { diceRoll, calculateScore, threeOfAKind, fourOfAKind, fullHouse, Yahtzee } from './helper';
+import { diceRoll, calculateScore, threeOfAKind, fourOfAKind, fullHouse, Yahtzee, chance } from './helper';
 
 const initialState = {
     dice: {
@@ -154,6 +154,22 @@ function reducer(prevState = initialState, action) {
             newState.dice = newDice;
             return newState;
         }
+case types.SCORE_CHANCE: {
+            const newState = Object.assign({}, prevState);
+            const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
+            newPlayerScore['Chance'] = chance(newState.currentDiceScore);
+            newState[newState.currentPlayer] = newPlayerScore;
+            newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
+            newState.rollNumber = 0;
+            const newDice = Object.assign({}, newState.dice);
+            for (var key in newDice) {
+                newDice[key].held = false;
+            }
+            newState.dice = newDice;
+            return newState;
+        }
+
+
         default: {
             return prevState;
         }

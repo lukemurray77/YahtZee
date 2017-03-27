@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {ScoreNumbers, ThreeOfAKind, FourOfAKind, FullHouse, Yahtzee} from './reduxStuff/actions';
+import {ScoreNumbers, ThreeOfAKind, FourOfAKind, FullHouse, Yahtzee, Chance} from './reduxStuff/actions';
 
 const Table = React.createClass({
   render() {
@@ -91,10 +91,9 @@ const Table = React.createClass({
             <td><b>{this.props.state.player2['Yahtzee']}</b></td>
           </tr>
           <tr>
-            <th>Chance</th>
-            <td></td>
-            <td></td>
-            <td></td>
+            <th><a className='button' onClick={this.chance}>Chance</a></th>
+            <td><b>{this.props.state.player1['Chance']}</b></td>
+            <td><b>{this.props.state.player2['Chance']}</b></td>
           </tr>
           <tr>
             <th>Total</th>
@@ -120,6 +119,9 @@ const Table = React.createClass({
   },
   yahtzee: function () {
     this.props.yahtzee();
+  },
+  chance: function () {
+    this.props.chance();
   }
 })
 
@@ -145,6 +147,9 @@ function mapDispatchToProps(dispatch) {
     },
     yahtzee: () => {
       dispatch(Yahtzee());
+    },
+    chance: () => {
+      dispatch(Chance());
     }
   }
 }

@@ -43,3 +43,9 @@ export function Yahtzee () {
         type: types.SCORE_YAHTZEE
     }
 }
+
+export function Chance () {
+    return {
+        type: types.SCORE_CHANCE
+    }
+}
