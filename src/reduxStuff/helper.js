@@ -13,27 +13,79 @@ export function calculateScore(arr, number) {
     }, 0);
 }
 
-
-//[5, 5, 5, 2, 2]
 export function threeOfAKind(arr) {
-    // this function only needs to check that the array does contain three of a kind (then it returns the entire dice score)
-    return arr.reduce(function (acc, el) {
-        acc += el;
-        return acc;
-    }, 0);
+    let firstValue = arr[0];
+    let secondValue;
+    let firstValueCounter = 0;
+    let secondValueCoutner = 0;
+    arr.forEach(function (element) {
+        if (element === arr[0]) {
+            firstValueCounter++;
+        }
+        if (element !== arr[0]) {
+            secondValue = element;
+            secondValueCoutner++;
+        }
+        if (element === secondValue) {
+            secondValueCoutner++;
+        }
+    });
+    if (firstValueCounter === 3 || secondValueCoutner === 3) {
+        return arr.reduce(function (acc, el) {
+            acc += el;
+            return acc;
+        }, 0);
+    }
+    else return 0;
 }
 
 export function fourOfAKind(arr) {
-    // similarly check 4 of a kind
-    return arr.reduce(function (acc, el) {
-        acc += el;
-        return acc;
-    }, 0);
+    let firstValue = arr[0];
+    let secondValue;
+    let firstValueCounter = 0;
+    let secondValueCoutner = 0;
+    arr.forEach(function (element) {
+        if (element === arr[0]) {
+            firstValueCounter++;
+        }
+        if (element !== arr[0]) {
+            secondValue = element;
+            secondValueCoutner++;
+        }
+        if (element === secondValue) {
+            secondValueCoutner++;
+        }
+    });
+    if (firstValueCounter === 4 || secondValueCoutner === 4) {
+        return arr.reduce(function (acc, el) {
+            acc += el;
+            return acc;
+        }, 0);
+    }
+    else return 0;
 }
 
-//[5, 5, 5, 2, 2]
 export function fullHouse(arr) {
-    return 25;
+    let firstValue = arr[0];
+    let secondValue;
+    let firstValueCounter = 0;
+    let secondValueCoutner = 0;
+    arr.forEach(function (element) {
+        if (element === arr[0]) {
+            firstValueCounter++;
+        }
+        if (element !== arr[0]) {
+            secondValue = element;
+            secondValueCoutner++;
+        }
+        if (element === secondValue) {
+            secondValueCoutner++;
+        }
+    });
+    if (firstValueCounter + secondValueCoutner === 5) {
+        return 25
+    }
+    else return 0;
 }
 
 export function lowStraight(arr) {
@@ -45,9 +97,9 @@ export function highStraight(arr) {
 }
 
 export function Yahtzee(arr) {
-    
+
     if (_.every(arr, function (el) {
-        return (el===arr[0]);
+        return (el === arr[0]);
     })) return 50;
     else return 0;
 }
