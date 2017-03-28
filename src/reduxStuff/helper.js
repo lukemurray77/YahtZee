@@ -14,55 +14,42 @@ export function calculateScore(arr, number) {
 }
 
 export function threeOfAKind(arr) {
-    let firstValue = arr[0];
-    let secondValue;
-    let firstValueCounter = 0;
-    let secondValueCoutner = 0;
-    arr.forEach(function (element) {
-        if (element === arr[0]) {
-            firstValueCounter++;
+    let reducedArr = arr.reduce(function (acc, el) {
+        if (acc.hasOwnProperty(el)) {
+            acc[el]++;
         }
-        if (element !== arr[0]) {
-            secondValue = element;
-            secondValueCoutner++;
+        else (acc[el] = 1);
+        return acc;
+    }, {});
+    for (var key in reducedArr) {
+        if (reducedArr[key] === 3) {
+            return arr.reduce(function (acc, el) {
+                acc += el;
+                return acc;
+            }, 0);
         }
-        else if (element === secondValue) {
-            secondValueCoutner++;
-        }
-    });
-    if (firstValueCounter > 2 || secondValueCoutner > 2) {
-        return arr.reduce(function (acc, el) {
-            acc += el;
-            return acc;
-        }, 0);
     }
-    else return 0;
+    return 0;
 }
 
 export function fourOfAKind(arr) {
-    let firstValue = arr[0];
-    let secondValue;
-    let firstValueCounter = 0;
-    let secondValueCoutner = 0;
-    arr.forEach(function (element) {
-        if (element === arr[0]) {
-            firstValueCounter++;
+    let reducedArr = arr.reduce(function (acc, el) {
+        if (acc.hasOwnProperty(el)) {
+            acc[el]++;
         }
-        if (element !== arr[0]) {
-            secondValue = element;
-            secondValueCoutner++;
+        else (acc[el] = 1);
+        return acc;
+    }, {});
+    for (var key in reducedArr) {
+        if (reducedArr[key] === 4) {
+            console.log(reducedArr[key]);
+            return arr.reduce(function (acc, el) {
+                acc += el;
+                return acc;
+            }, 0);
         }
-        else if (element === secondValue) {
-            secondValueCoutner++;
-        }
-    });
-    if (firstValueCounter === 4 || secondValueCoutner === 4) {
-        return arr.reduce(function (acc, el) {
-            acc += el;
-            return acc;
-        }, 0);
     }
-    else return 0;
+    return 0;
 }
 
 export function fullHouse(arr) {
