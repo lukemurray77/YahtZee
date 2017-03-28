@@ -87,101 +87,120 @@ function reducer(prevState = initialState, action) {
             return newState;
         }
         case types.SCORE_NUMBERS: {
-            const newState = Object.assign({}, prevState);
-            const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
-            newPlayerScore[action.number] = calculateScore(newState.currentDiceScore, action.number);
-            newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
-            newState[newState.currentPlayer] = newPlayerScore;
-            newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
-            newState.rollNumber = 0;
-            const newDice = Object.assign({}, newState.dice);
-            for (var key in newDice) {
-                newDice[key].held = false;
-            }
-            newState.dice = newDice;
-            return newState;
+            if (prevState[prevState.currentPlayer][action.number] === null) {
+                const newState = Object.assign({}, prevState);
+                const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
+                newPlayerScore[action.number] = calculateScore(newState.currentDiceScore, action.number);
+                newState[newState.currentPlayer] = newPlayerScore;
+                newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
+                newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
+                newState.rollNumber = 0;
+                const newDice = Object.assign({}, newState.dice);
+                for (var key in newDice) {
+                    newDice[key].held = false;
+                }
+                newState.dice = newDice;
+                return newState;
+
+            } else return prevState;
         }
         case types.SCORE_3OFAKIND: {
-            const newState = Object.assign({}, prevState);
-            const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
-            newPlayerScore['3 of a kind'] = threeOfAKind(newState.currentDiceScore);
-            newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
-            newState[newState.currentPlayer] = newPlayerScore;
-            newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
-            newState.rollNumber = 0;
-            const newDice = Object.assign({}, newState.dice);
-            for (var key in newDice) {
-                newDice[key].held = false;
-            }
-            newState.dice = newDice;
-            return newState;
+            if (prevState[prevState.currentPlayer]['3 of a kind'] === null) {
+                const newState = Object.assign({}, prevState);
+                const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
+                newPlayerScore['3 of a kind'] = threeOfAKind(newState.currentDiceScore);
+                newState[newState.currentPlayer] = newPlayerScore;
+                newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
+                newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
+                newState.rollNumber = 0;
+                const newDice = Object.assign({}, newState.dice);
+                for (var key in newDice) {
+                    newDice[key].held = false;
+                }
+                newState.dice = newDice;
+                return newState;
+            } else return prevState;
+
         }
         case types.SCORE_4OFAKIND: {
-            const newState = Object.assign({}, prevState);
-            const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
-            newPlayerScore['4 of a kind'] = fourOfAKind(newState.currentDiceScore);
-            newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
-            newState[newState.currentPlayer] = newPlayerScore;
-            newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
-            newState.rollNumber = 0;
-            const newDice = Object.assign({}, newState.dice);
-            for (var key in newDice) {
-                newDice[key].held = false;
-            }
-            newState.dice = newDice;
-            return newState;
+            if (prevState[prevState.currentPlayer]['4 of a kind'] === null) {
+
+                const newState = Object.assign({}, prevState);
+                const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
+                newPlayerScore['4 of a kind'] = fourOfAKind(newState.currentDiceScore);
+                newState[newState.currentPlayer] = newPlayerScore;
+                newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
+                newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
+                newState.rollNumber = 0;
+                const newDice = Object.assign({}, newState.dice);
+                for (var key in newDice) {
+                    newDice[key].held = false;
+                }
+                newState.dice = newDice;
+                return newState;
+            } else return prevState;
         }
         case types.SCORE_FULLHOUSE: {
-            const newState = Object.assign({}, prevState);
-            const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
-            newPlayerScore['full house'] = fullHouse(newState.currentDiceScore);
-            newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
-            newState[newState.currentPlayer] = newPlayerScore;
-            newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
-            newState.rollNumber = 0;
-            const newDice = Object.assign({}, newState.dice);
-            for (var key in newDice) {
-                newDice[key].held = false;
-            }
-            newState.dice = newDice;
-            return newState;
+            if (prevState[prevState.currentPlayer]['full house'] === null) {
+                const newState = Object.assign({}, prevState);
+                const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
+                newPlayerScore['full house'] = fullHouse(newState.currentDiceScore);
+                newState[newState.currentPlayer] = newPlayerScore;
+                newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
+                newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
+                newState.rollNumber = 0;
+                const newDice = Object.assign({}, newState.dice);
+                for (var key in newDice) {
+                    newDice[key].held = false;
+                }
+                newState.dice = newDice;
+                return newState;
+            } else return prevState;
+
         }
         case types.SCORE_YAHTZEE: {
-            const newState = Object.assign({}, prevState);
-            const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
-            newPlayerScore['Yahtzee'] = Yahtzee(newState.currentDiceScore);
-            newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
-            newState[newState.currentPlayer] = newPlayerScore;
-            newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
-            newState.rollNumber = 0;
-            const newDice = Object.assign({}, newState.dice);
-            for (var key in newDice) {
-                newDice[key].held = false;
-            }
-            newState.dice = newDice;
-            return newState;
+            if (prevState[prevState.currentPlayer]['Yahtzee'] === null) {
+
+                const newState = Object.assign({}, prevState);
+                const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
+                newPlayerScore['Yahtzee'] = Yahtzee(newState.currentDiceScore);
+                newState[newState.currentPlayer] = newPlayerScore;
+                newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
+                newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
+                newState.rollNumber = 0;
+                const newDice = Object.assign({}, newState.dice);
+                for (var key in newDice) {
+                    newDice[key].held = false;
+                }
+                newState.dice = newDice;
+                return newState;
+            } else return prevState;
         }
         case types.SCORE_CHANCE: {
-            const newState = Object.assign({}, prevState);
-            const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
-            newPlayerScore['Chance'] = chance(newState.currentDiceScore);
-            newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
-            newState[newState.currentPlayer] = newPlayerScore;
-            newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
-            newState.rollNumber = 0;
-            const newDice = Object.assign({}, newState.dice);
-            for (var key in newDice) {
-                newDice[key].held = false;
-            }
-            newState.dice = newDice;
-            return newState;
+            if (prevState[prevState.currentPlayer]['Chance'] === null) {
+                const newState = Object.assign({}, prevState);
+                const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
+                newPlayerScore['Chance'] = chance(newState.currentDiceScore);
+                newState[newState.currentPlayer] = newPlayerScore;
+                newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
+                newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
+                newState.rollNumber = 0;
+                const newDice = Object.assign({}, newState.dice);
+                for (var key in newDice) {
+                    newDice[key].held = false;
+                }
+                newState.dice = newDice;
+                return newState;
+
+            } else return prevState;
         }
         case types.SCORE_LOWSTRAIGHT: {
-            const newState = Object.assign({}, prevState);
+            if (prevState[prevState.currentPlayer]['low straight'] === null) {
+                const newState = Object.assign({}, prevState);
             const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
             newPlayerScore['low straight'] = lowStraight(newState.currentDiceScore);
-            newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
             newState[newState.currentPlayer] = newPlayerScore;
+            newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
             newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
             newState.rollNumber = 0;
             const newDice = Object.assign({}, newState.dice);
@@ -190,13 +209,15 @@ function reducer(prevState = initialState, action) {
             }
             newState.dice = newDice;
             return newState;
+            } else return prevState;
         }
         case types.SCORE_HIGHSTRAIGHT: {
-            const newState = Object.assign({}, prevState);
+            if (prevState[prevState.currentPlayer]['high straight'] === null) {
+                const newState = Object.assign({}, prevState);
             const newPlayerScore = Object.assign({}, newState[newState.currentPlayer]);
             newPlayerScore['high straight'] = highStraight(newState.currentDiceScore);
-            newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
             newState[newState.currentPlayer] = newPlayerScore;
+            newPlayerScore.overallTotal = addTotal(newState[newState.currentPlayer]);
             newState.currentPlayer = newState.currentPlayer === 'player1' ? 'player2' : 'player1';
             newState.rollNumber = 0;
             const newDice = Object.assign({}, newState.dice);
@@ -205,6 +226,7 @@ function reducer(prevState = initialState, action) {
             }
             newState.dice = newDice;
             return newState;
+            } else return prevState;
         }
 
 
