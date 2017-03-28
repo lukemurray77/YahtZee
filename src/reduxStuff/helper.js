@@ -22,7 +22,7 @@ export function threeOfAKind(arr) {
         return acc;
     }, {});
     for (var key in reducedArr) {
-        if (reducedArr[key] === 3) {
+        if (reducedArr[key] > 2) {
             return arr.reduce(function (acc, el) {
                 acc += el;
                 return acc;
@@ -41,7 +41,7 @@ export function fourOfAKind(arr) {
         return acc;
     }, {});
     for (var key in reducedArr) {
-        if (reducedArr[key] === 4) {
+        if (reducedArr[key] > 3) {
             console.log(reducedArr[key]);
             return arr.reduce(function (acc, el) {
                 acc += el;

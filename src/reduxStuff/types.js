@@ -1,18 +1,3 @@
 export const ROLL_DICE = 'ROLL_DICE';
 export const HOLD_DICE = 'HOLD_DICE';
-
 export const SCORE_NUMBERS = 'SCORE_NUMBERS';
-
-export const SCORE_3OFAKIND = 'SCORE_3OFAKIND';
-
-export const SCORE_4OFAKIND = 'SCORE_4OFAKIND';
-
-export const SCORE_FULLHOUSE = 'SCORE_FULLHOUSE';
-
-export const SCORE_YAHTZEE = 'SCORE_YAHTZEE';
-
-export const SCORE_CHANCE = 'SCORE_CHANCE';
-
-export const SCORE_LOWSTRAIGHT = 'SCORE_LOWSTRAIGHT';
-
-export const SCORE_HIGHSTRAIGHT = 'SCORE_HIGHSTRAIGHT';

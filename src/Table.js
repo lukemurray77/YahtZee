@@ -53,37 +53,37 @@ const Table = React.createClass({
             <td></td>
           </tr>
           <tr>
-            <th><a className='button' onClick={this.handleThree}>3 of a Kind</a></th>
+            <th><a className='button' onClick={this.handleClick.bind(null, '3 of a kind')}>3 of a Kind</a></th>
             <td><b>{this.props.state.player1['3 of a kind']}</b></td>
             <td><b>{this.props.state.player2['3 of a kind']}</b></td>
           </tr>
           <tr>
-            <th><a className='button' onClick={this.handleFour}>4 of a Kind</a></th>
+            <th><a className='button' onClick={this.handleClick.bind(null, '4 of a kind')}>4 of a Kind</a></th>
             <td><b>{this.props.state.player1['4 of a kind']}</b></td>
             <td><b>{this.props.state.player2['4 of a kind']}</b></td>
           </tr>
           <tr>
-            <th><a className='button' onClick={this.lowStraight}>Low Straight</a></th>
+            <th><a className='button' onClick={this.handleClick.bind(null, 'low straight')}>Low Straight</a></th>
             <td><b>{this.props.state.player1['low straight']}</b></td>
             <td><b>{this.props.state.player2['low straight']}</b></td>
           </tr>
           <tr>
-            <th><a className='button' onClick={this.highStraight}>High Straight</a></th>
+            <th><a className='button' onClick={this.handleClick.bind(null, 'high straight')}>High Straight</a></th>
             <td><b>{this.props.state.player1['high straight']}</b></td>
             <td><b>{this.props.state.player2['high straight']}</b></td>
           </tr>
           <tr>
-            <th><a className='button' onClick={this.fullHouse}>Full House</a></th>
+            <th><a className='button' onClick={this.handleClick.bind(null, 'full house')}>Full House</a></th>
             <td><b>{this.props.state.player1['full house']}</b></td>
             <td><b>{this.props.state.player2['full house']}</b></td>
           </tr>
           <tr>
-            <th><a className='button' onClick={this.yahtzee}>Yahtzee</a></th>
+            <th><a className='button' onClick={this.handleClick.bind(null, 'Yahtzee')}>Yahtzee</a></th>
             <td><b>{this.props.state.player1['Yahtzee']}</b></td>
             <td><b>{this.props.state.player2['Yahtzee']}</b></td>
           </tr>
           <tr>
-            <th><a className='button' onClick={this.chance}>Chance</a></th>
+            <th><a className='button' onClick={this.handleClick.bind(null, 'Chance')}>Chance</a></th>
             <td><b>{this.props.state.player1['Chance']}</b></td>
             <td><b>{this.props.state.player2['Chance']}</b></td>
           </tr>
